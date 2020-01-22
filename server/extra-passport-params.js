@@ -11,10 +11,12 @@ const params = R.once(() => [
 		strategy: 'passport-saml',
 		passportAuthnParams: {},
 		options: {
+			passReqToCallback: true,
 			validateInResponseTo: true,
 			requestIdExpirationPeriodMs: 3600000,
 			decryptionPvk: fs.readFileSync(global.config.spTLSKey, 'utf-8'),
-			decryptionCert: fs.readFileSync(global.config.spTLSCert, 'utf-8')
+			decryptionCert: fs.readFileSync(global.config.spTLSCert, 'utf-8'),
+			privateCert: fs.readFileSync("/etc/certs/passport-sp.key", 'utf-8')
 		}
 	},
 	{
