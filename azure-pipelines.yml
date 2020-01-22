@@ -39,12 +39,9 @@ steps:
     targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
-    ls -al 
-    ls -al $(Pipeline.Workspace)
-    ls -al $(Pipeline.Workspace)/saml
-    npm install $(Pipeline.Workspace)/openid/lib
-    npm install $(Pipeline.Workspace)/saml/lib/passport-saml
-  displayName: 'checking the working directory and npm install'
+    npm install $(Pipeline.Workspace)/openid/s
+    npm install $(Pipeline.Workspace)/saml/s
+  displayName: 'customizing the saml and openid packages'
 
 - task: PublishPipelineArtifact@1
   inputs:
