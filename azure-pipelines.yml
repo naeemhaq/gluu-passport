@@ -17,6 +17,7 @@ steps:
 
 - script: |
     npm install
+    ls -al
   displayName: 'npm install and build'
 
 - task: DownloadPipelineArtifact@2
@@ -26,7 +27,7 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '$(Pipeline.Workspace)/saml'
 
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -35,10 +36,12 @@ steps:
     definition: '4'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-openidconnect'
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
+    pwd
     ls -al 
+    ls -al $(Pipeline.Workspace)
   displayName: 'checking the working directory'
 
 - task: PublishPipelineArtifact@1
