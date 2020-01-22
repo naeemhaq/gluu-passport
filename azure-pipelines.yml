@@ -26,7 +26,7 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
-    itemPattern: '!node_module/**'
+    itemPattern: '!node_modules/**'
     targetPath: '$(Pipeline.Workspace)/saml'
 - task: DownloadPipelineArtifact@2
   inputs:
