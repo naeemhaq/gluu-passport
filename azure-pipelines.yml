@@ -19,8 +19,32 @@ steps:
     npm install
   displayName: 'npm install and build'
 
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '32be4b0e-237f-430d-9289-c5966a5c9829'
+    definition: '3'
+    buildVersionToDownload: 'latest'
+    artifactName: 'passport-saml'
+    targetPath: '$(Pipeline.Workspace)'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '32be4b0e-237f-430d-9289-c5966a5c9829'
+    definition: '4'
+    buildVersionToDownload: 'latest'
+    artifactName: 'passport-openidconnect'
+    targetPath: '$(Pipeline.Workspace)'
+
+- script: |
+    ls -al 
+  displayName: 'checking the working directory'
+
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'gluu-passport'
     publishLocation: 'pipeline'
+
+
