@@ -26,9 +26,8 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
-    itemPattern: '**/s/lib/*'
+    itemPattern: '!*/node_modules/*'
     targetPath: '$(Pipeline.Workspace)/saml'
-
 - task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'specific'
@@ -36,7 +35,7 @@ steps:
     definition: '4'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-openidconnect'
-    itemPattern: '**/s/lib/*'
+    itemPattern: '!*/node_modules/*'
     targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
