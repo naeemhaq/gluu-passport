@@ -26,7 +26,6 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
-    itemPattern: '!*/node_modules/**'
     targetPath: '$(Pipeline.Workspace)/saml'
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -39,8 +38,8 @@ steps:
 
 - script: |
     pwd
-    ls -al 
     rm -f package-lock.json
+    ls -al 
     npm install $(Pipeline.Workspace)/saml/s/
     echo '***** saml instal executed ****'
     npm install $(Pipeline.Workspace)/openid/s
