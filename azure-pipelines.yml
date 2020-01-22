@@ -39,8 +39,11 @@ steps:
     targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
+    ls -al $(Pipeline.Workspace)/openid/s
+    ls -al $(Pipeline.Workspace)/saml/s
     npm install $(Pipeline.Workspace)/openid/s
-    npm install $(Pipeline.Workspace)/saml/s
+    echo '***** open id connect updated ****'
+    
   displayName: 'customizing the saml and openid packages'
 
 - task: PublishPipelineArtifact@1
