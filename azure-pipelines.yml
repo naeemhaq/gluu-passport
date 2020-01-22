@@ -41,10 +41,7 @@ steps:
 - script: |
     ls -al $(Pipeline.Workspace)/openid/s
     ls -al $(Pipeline.Workspace)/saml/s
-    npm install $(Pipeline.Workspace)/openid/s
-    echo '***** open id connect updated ****'
-    
-  displayName: 'customizing the saml and openid packages'
+  displayName: 'lets check directory structure'
 
 - task: PublishPipelineArtifact@1
   inputs:
