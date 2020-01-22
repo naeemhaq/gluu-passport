@@ -26,7 +26,7 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
-    itemPattern: '!*/node_modules/*'
+    itemPattern: '!s/node_modules'
     targetPath: '$(Pipeline.Workspace)/saml'
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -35,12 +35,14 @@ steps:
     definition: '4'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-openidconnect'
-    itemPattern: '!*/node_modules/*'
+    itemPattern: 's/node_modules'
     targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
     ls -al $(Pipeline.Workspace)/openid/s
     ls -al $(Pipeline.Workspace)/saml/s
+    npm install $(Pipeline.Workspace)/openid/s
+    echo '***** open id connect updated ****'
   displayName: 'lets check directory structure'
 
 - task: PublishPipelineArtifact@1
