@@ -63,7 +63,7 @@ steps:
 - task: UniversalPackages@0
   inputs:
     command: 'publish'
-    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    publishDirectory: '$(Pipeline.Workspace)/s'
     feedsToUsePublish: 'internal'
     vstsFeedPublish: '32be4b0e-237f-430d-9289-c5966a5c9829/032cde20-7872-4dbd-86db-d0af542b88b7'
     vstsFeedPackagePublish: 'gluu-passport'
