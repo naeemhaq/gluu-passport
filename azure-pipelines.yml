@@ -49,10 +49,15 @@ steps:
     npm -v
   displayName: 'Update packages'
 
-- task: PublishPipelineArtifact@1
+- task: UniversalPackages@0
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'gluu-passport'
-    publishLocation: 'pipeline'
+    command: 'publish'
+    publishDirectory: '$(Build.ArtifactStagingDirectory)'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '32be4b0e-237f-430d-9289-c5966a5c9829/032cde20-7872-4dbd-86db-d0af542b88b7'
+    vstsFeedPackagePublish: 'gluu-passport'
+    versionOption: 'patch'
+
+
 
 
