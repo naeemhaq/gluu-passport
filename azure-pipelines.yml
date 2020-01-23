@@ -46,7 +46,7 @@ steps:
     echo '***** saml instal executed ****'
     npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
     npm pack
-    ls -al $(Build.ArtifactStagingDirectory)
+    echo $(Build.ArtifactStagingDirectory)
   displayName: 'Update packages'
 
 - task: UniversalPackages@0
