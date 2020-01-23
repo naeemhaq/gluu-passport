@@ -57,8 +57,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Pipeline.Workspace)/s'
-    Contents: '**.tgz'
+    Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: UniversalPackages@0
@@ -67,7 +66,7 @@ steps:
     publishDirectory: '$(Build.ArtifactStagingDirectory)'
     feedsToUsePublish: 'internal'
     vstsFeedPublish: '32be4b0e-237f-430d-9289-c5966a5c9829/032cde20-7872-4dbd-86db-d0af542b88b7'
-    vstsFeedPackagePublish: 'passport-4.0.0.tgz'
+    vstsFeedPackagePublish: 'gluu-passport'
     versionOption: 'patch'
 
 
