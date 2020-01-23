@@ -49,6 +49,12 @@ steps:
     echo $(Build.ArtifactStagingDirectory)
   displayName: 'Update packages'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'gluu-passport'
+    publishLocation: 'pipeline'
+
 - task: UniversalPackages@0
   inputs:
     command: 'publish'
