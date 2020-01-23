@@ -38,12 +38,12 @@ steps:
 
 - script: |
     pwd
-    rm -f package-lock.json
-    rm -rf node_modules
     ls -al 
-    npm install $(Pipeline.Workspace)/saml/s/
+    npm update $(Pipeline.Workspace)/saml/s/
     echo '***** saml instal executed ****'
-    npm install $(Pipeline.Workspace)/openid/s
+    npm update $(Pipeline.Workspace)/openid/s
+    uname -a 
+    npm -v
   displayName: 'Update packages'
 
 - task: PublishPipelineArtifact@1
