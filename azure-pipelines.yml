@@ -39,6 +39,7 @@ steps:
 - script: |
     pwd
     rm -f package-lock.json
+    rm -rf node_modules
     ls -al 
     npm install $(Pipeline.Workspace)/saml/s/
     echo '***** saml instal executed ****'
