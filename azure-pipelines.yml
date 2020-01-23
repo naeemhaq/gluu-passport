@@ -38,10 +38,11 @@ steps:
 
 - script: |
     pwd
-    ls -al 
-    npm update $(Pipeline.Workspace)/saml/s/
+    ls -al
+    cp $(Pipeline.Workspace)/saml/s/package.json $(Pipeline.Workspace)/saml/s/lib
+    npm install $(Pipeline.Workspace)/saml/s/lib
     echo '***** saml instal executed ****'
-    npm update $(Pipeline.Workspace)/openid/s
+    npm install $(Pipeline.Workspace)/openid/s
     uname -a 
     npm -v
   displayName: 'Update packages'
