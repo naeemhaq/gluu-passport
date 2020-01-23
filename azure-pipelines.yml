@@ -26,6 +26,7 @@ steps:
     definition: '3'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-saml'
+    itemPattern: '**passport-saml-1.2.0.tgz'
     targetPath: '$(Pipeline.Workspace)/saml'
 - task: DownloadPipelineArtifact@2
   inputs:
@@ -34,15 +35,16 @@ steps:
     definition: '4'
     buildVersionToDownload: 'latest'
     artifactName: 'passport-openidconnect'
+    itemPattern: '**passport-openidconnect-0.0.2.tgz'
     targetPath: '$(Pipeline.Workspace)/openid'
 
 - script: |
     pwd
     ls -al
     cp $(Pipeline.Workspace)/saml/s/package.json $(Pipeline.Workspace)/saml/s/lib
-    npm install $(Pipeline.Workspace)/saml/s/lib
+    npm install $(Pipeline.Workspace)/saml/s/passport-openidconnect-0.0.2.tgz
     echo '***** saml instal executed ****'
-    npm install $(Pipeline.Workspace)/openid/s
+    npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
     uname -a 
     npm -v
   displayName: 'Update packages'
