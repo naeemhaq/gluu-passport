@@ -46,13 +46,18 @@ steps:
     npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
     npm pack
     echo $(Build.ArtifactStagingDirectory)
+    echo $(Build.SourceDirectory)
+    echo $(BuildConfiguration)
+    echo $(buildPlatform)
   displayName: 'Update packages'
+  continueOnError: true
 
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'gluu-passport'
     publishLocation: 'pipeline'
+  condition: succeededOrFailed()
 
 - task: UniversalPackages@0
   inputs:
