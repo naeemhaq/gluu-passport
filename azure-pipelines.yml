@@ -41,7 +41,6 @@ steps:
 - script: |
     pwd
     ls -al
-    cp $(Pipeline.Workspace)/saml/s/package.json $(Pipeline.Workspace)/saml/s/lib
     npm install $(Pipeline.Workspace)/saml/s/passport-saml-1.2.0.tgz
     echo '***** saml instal executed ****'
     npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
@@ -54,11 +53,6 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'gluu-passport'
     publishLocation: 'pipeline'
-
-- task: CopyFiles@2
-  inputs:
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: UniversalPackages@0
   inputs:
