@@ -47,8 +47,8 @@ steps:
     npm pack
     echo $(Build.ArtifactStagingDirectory)
     echo $(Build.SourceDirectory)
-    echo $(BuildConfiguration)
-    echo $(buildPlatform)
+    echo $(Build.Configuration)
+    echo $(Build.Platform)
   displayName: 'Update packages'
   continueOnError: true
 
