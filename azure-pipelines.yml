@@ -3,6 +3,19 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+resources:
+ pipelines:
+   - pipeline: openidconnect
+     source: passport-openidconnect
+     trigger:
+      branches:
+      - master 
+   - pipeline: passportsaml
+     source: passport-saml
+     trigger:
+      branches:
+      - master
+
 trigger:
 - master
 
