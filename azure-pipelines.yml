@@ -6,12 +6,12 @@
 resources:
  pipelines:
    - pipeline: openidconnect
-     source: passport-openidconnect
+     source: naeemhaq.passport-openidconnect
      trigger:
       branches:
       - master 
    - pipeline: passportsaml
-     source: passport-saml
+     source: naeemhaq.passport-saml
      trigger:
       branches:
       - master
