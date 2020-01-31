@@ -57,7 +57,6 @@ steps:
     npm install $(Pipeline.Workspace)/saml/s/passport-saml-1.2.0.tgz
     echo '***** saml instal executed ****'
     npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
-    npm pack
   displayName: 'Update packages'
   continueOnError: true
 
@@ -69,8 +68,11 @@ steps:
 
 - script: |
     echo 'packaging the files'
-    tar -czvf passport-version_4.0-node_modules.tar.gz $(Pipeline.Workspace)/package/node_modules
-    tar -czvf passport.tgz --exclude='$(Pipeline.Workspace)/s/node_modules/*' $(Pipeline.Workspace)/package
+    pwd
+    cd $(Pipeline.Workspace)/package
+    pwd
+    tar -czvf passport-version_4.0-node_modules.tar.gz node_modules
+    tar -czvf passport.tgz --exclude='node_modules/*' ../package
   displayName: 'create tarballs'
   continueOnError: true
 
