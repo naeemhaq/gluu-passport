@@ -63,7 +63,13 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Pipeline.Workspace)/s'
-    Contents: '**'
+    Contents: |
+      **/s/LICENSE
+      **/s/package.json
+      **/s/package-lock.json
+      **/s/README.md
+      **/s/server/*
+      **/s/node_modules/*
     TargetFolder: '$(Pipeline.Workspace)/package'
 
 - script: |
@@ -72,7 +78,8 @@ steps:
     cd $(Pipeline.Workspace)/package
     pwd
     tar -czvf passport-version_4.0-node_modules.tar.gz node_modules
-    tar -czvf passport.tgz --exclude='node_modules/*' ../package
+    cd $(Pipeline.Workspace)
+    tar -czvf passport.tgz --exclude='package/node_modules/*' package
   displayName: 'create tarballs'
   continueOnError: true
 
