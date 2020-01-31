@@ -63,21 +63,22 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Pipeline.Workspace)'
+    SourceFolder: '$(Pipeline.Workspace)/s'
     Contents: |
-      **/s/LICENSE
-      **/s/package.json
-      **/s/package-lock.json
-      **/s/README.md
-      **/s/server/*
-      **/s/passport-version_4.0-node_modules.tar.gz
+      **LICENSE
+      **package.json
+      **package-lock.json
+      **README.md
+      **server/*
+      **passport-version_4.0-node_modules.tar.gz
     TargetFolder: '$(Pipeline.Workspace)/package'
 
 - script: |
     echo 'packaging the files'
     cd $(Pipeline.Workspace)
     pwd
-    tar -czvf passport.tgz --exclude='package/passport-version_4.0-node_modules.tar.gz' package
+    tar -czvf passport.tgz --exclude='*.tar.gz' package
+    mv passport.tgz package
   displayName: 'create tarball'
   continueOnError: true
 
