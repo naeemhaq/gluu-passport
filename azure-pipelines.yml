@@ -57,30 +57,26 @@ steps:
     npm install $(Pipeline.Workspace)/saml/s/passport-saml-1.2.0.tgz
     echo '***** saml instal executed ****'
     npm install $(Pipeline.Workspace)/openid/s/passport-openidconnect-0.0.2.tgz
+    tar -czvf passport-version_4.0-node_modules.tar.gz node_modules
   displayName: 'Update packages'
   continueOnError: true
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Pipeline.Workspace)/s'
+    SourceFolder: '$(Pipeline.Workspace)'
     Contents: |
       **/s/LICENSE
       **/s/package.json
       **/s/package-lock.json
       **/s/README.md
       **/s/server/*
-      **/s/node_modules/*
+      **/s/passport-version_4.0-node_modules.tar.gz
     TargetFolder: '$(Pipeline.Workspace)/package'
 
 - script: |
     echo 'packaging the files'
-    pwd
-    cd $(Pipeline.Workspace)/package
-    pwd
-    tar -czvf passport-version_4.0-node_modules.tar.gz node_modules
-    cd $(Pipeline.Workspace)
-    tar -czvf passport.tgz --exclude='package/node_modules/*' package
-  displayName: 'create tarballs'
+    tar -czvf passport.tgz --exclude='package/passport-version_4.0-node_modules.tar.gz' package
+  displayName: 'create tarball'
   continueOnError: true
 
 - task: PublishPipelineArtifact@1
@@ -93,7 +89,7 @@ steps:
 - task: UniversalPackages@0
   inputs:
     command: 'publish'
-    publishDirectory: '$(Pipeline.Workspace)/s'
+    publishDirectory: '$(Pipeline.Workspace)/package'
     feedsToUsePublish: 'internal'
     vstsFeedPublish: '32be4b0e-237f-430d-9289-c5966a5c9829/032cde20-7872-4dbd-86db-d0af542b88b7'
     vstsFeedPackagePublish: 'gluu-passport'
